@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Poppins', Arial, sans-serif;
+    text-align: center;
+    overflow: scroll;
+}
+.parallax-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    }
+    
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("path/to/morning-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    }
+    
+.toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-image: url("path/to/sun-icon.png");
+    background-size: cover;
+    cursor: pointer;
+    }
+
+    #hd1{
+    margin-top: -17rem;
+}
+
+#pg1{
+    margin-top: 3rem;
+}
+    
+.dark-mode .toggle {
+ background-image: url("path/to/moon-icon.png");
+}
+
+.light-mode .background {
+ background-image: url("path/to/morning-background.jpg");
+}
+
+.dark-mode .background {
+ background-image: url("path/to/night-background.jpg");
+}
+
+.background {
+    width: 100%;
+    height: 100%;
+    background-image: url("mrng.jpg");
+    position: absolute;
+    z-index: -1;
+}
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding-bottom: 20%;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    font-size: 24px;
+}
+
+.temperature-converter {
+    background-color: #ffffff79;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 8px #00000074;
+    margin: 20px auto;
+    max-width: 400px;
+    animation: fadeIn 1s ease-in-out 0.5s;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    max-width: 600px;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    padding: 20px;
+    text-align: center;
+}
+
+.temperature-converter .input-group {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+.temperature-converter .input-group label {
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 14px;
+    display: block;
+    margin-top: 3rem;
+    font-weight: bold;
+}
+.temperature-converter .input-group input {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s; 
+    width: 80%;
+}
+
+.temperature-converter .input-group input:focus {
+    border-color: #00abf0;
+}
+
+.temperature-converter .result {
+    margin-top: 20px;
+    font-weight: 600;
+    color: #0c0404;
+    font-size: 20px;
+    animation: slideIn 1s;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.clear {
+    border: none;
+    background: #777;
+    padding: 3%;
+    transform: translateY(10px);
+    border-radius: 8px;
+    color: white;
+} 
+.clear:hover {
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media(max-width: 700px){
+    .temperature-converter{
+        margin-top: 10rem;
+        margin-bottom: 20rem;
+        height: 600px;
+        overflow:visible;
+    }
+    #hd1{
+        font-size: 36px;
+    }
+    #pg1{
+        font-size: 20px;
+    }
+    .parallax-container{
+        margin-bottom: 10rem;
+    }
+
+}
