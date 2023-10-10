@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Temp Converter</title>
+</head>
+<body>
+    <header class="header">
+        <div class="bx bx-sun" id="light-mode-toggle"></div>
+        <div class="bx bx-moon hidden" id="dark-mode-toggle"></div>
+    </header>
+    <div class="parallax-container">
+        <div class="background"></div>
+        <div class="content">
+            <h1 id="hd1">Today's Weather</h1>
+            <p id="pg1">It's a beautiful day with clear skies and a gentle breeze.</p>
+        </div>
+        <div class="sun-moon-toggle">
+            <div class="toggle" id="toggle" onclick="toggleBackground()"></div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="temperature-converter" style="margin-top: -6rem;">
+        <h1 style="font-size: 190%; margin-bottom: -2rem;">Temperature Converter</h1>&nbsp;
+        <div class="input-group">
+            <label for="celsius">Celsius (°C):</label><br>
+            <input type="number" id="celsius" placeholder="Enter Celsius" oninput="convertTemperature(this.value, 'celsius')">
+        </div>
+        <div class="input-group">
+            <label for="fahrenheit">Fahrenheit (°F):</label><br>
+            <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit" oninput="convertTemperature(this.value, 'fahrenheit')">
+        </div>
+        <div class="input-group">
+            <label for="kelvin">Kelvin (K):</label><br>
+            <input type="number" id="kelvin" placeholder="Enter Kelvin" oninput="convertTemperature(this.value, 'kelvin')">
+        </div>
+        <div class="result" id="result"></div>
+        <button class="clear" onclick="clearValues()"
+                style="background: #777; padding: 3%; transform: translateY(10px); border: none; border-radius: 8px; color: white;"><i
+                    class='bx bxs-trash-alt'></i> Clear All</button>
+    </div>
+
+ 
+<!-- -------------------Script Code----------------------- -->
+   
+    <script>
+        function convertTemperature(value, unit) {
+            const celsiusInput = document.getElementById("celsius");
+            const fahrenheitInput = document.getElementById("fahrenheit");
+            const kelvinInput = document.getElementById("kelvin");
+            const resultElement = document.getElementById("result");
+
+            if (unit === 'celsius') {
+                celsiusInput.value = value;
+                fahrenheitInput.value = (value * 9 / 5) + 32;
+                kelvinInput.value = parseFloat(value) + 273.15;
+            } else if (unit === 'fahrenheit') {
+                fahrenheitInput.value = value;
+                celsiusInput.value = (value - 32) * 5 / 9;
+                kelvinInput.value = (value - 32) * 5 / 9 + 273.15;
+            } else if (unit === 'kelvin') {
+                kelvinInput.value = value;
+                celsiusInput.value = value - 273.15;
+                fahrenheitInput.value = (value - 273.15) * 9 / 5 + 32;
+            }
+
+            resultElement.innerText = `${celsiusInput.value}°C = ${fahrenheitInput.value}°F = ${kelvinInput.value}K`;
+        }
+
+        function clearValues() {
+            const celsiusInput = document.getElementById("celsius");
+            const fahrenheitInput = document.getElementById("fahrenheit");
+            const kelvinInput = document.getElementById("kelvin");
+            const resultElement = document.getElementById("result");
+
+            celsiusInput.value = "";
+            fahrenheitInput.value = "";
+            kelvinInput.value = "";
+            resultElement.innerText = "";
+        }
+
+        function copyCelsius() {
+            const celsiusInput = document.getElementById("celsius");
+            copyToClipboard(celsiusInput.value);
+        }
+
+        function copyFahrenheit() {
+            const fahrenheitInput = document.getElementById("fahrenheit");
+            copyToClipboard(fahrenheitInput.value);
+        }
+
+        function copyKelvin() {
+            const kelvinInput = document.getElementById("kelvin");
+            copyToClipboard(kelvinInput.value);
+        }
+
+        function copyToClipboard(value) {
+            const tempInput = document.createElement("input");
+            tempInput.value = value;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+        }
+    </script>
+    <script>
+        const lightModeToggle = document.getElementById('light-mode-toggle');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        lightModeToggle.addEventListener('click', () => {
+            body.classList.add('light-mode');
+            body.classList.remove('dark-mode');
+            lightModeToggle.style.display = 'none';
+            darkModeToggle.style.display = 'block';
+
+            document.querySelector('.background').style.backgroundImage = 'url("mrng.jpg")';
+            document.querySelector('.sun').style.display = 'block';
+            document.querySelector('.moon').style.display = 'none';
+            document.querySelector('.sun').style.backgroundrepeat = 'norepeat';
+        });
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            lightModeToggle.style.display = 'block';
+            darkModeToggle.style.display = 'none';
+
+            document.querySelector('.background').style.backgroundImage = 'url("night.jpg")';
+            document.querySelector('.moon').style.display = 'block';
+            document.querySelector('.sun').style.display = 'none';
+        });
+
+        function toggleBackground() {
+        const body = document.body;
+        const toggle = document.getElementById('toggle');
+
+        body.classList.toggle('light-mode');
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('light-mode')) {
+            toggle.style.backgroundImage = 'url("mrng.jpg")';
+        } else {
+            toggle.style.backgroundImage = 'url("night.jpg")';
+        }
+        }
+    </script>
+</body>
+</html>
